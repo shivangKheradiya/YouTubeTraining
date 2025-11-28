@@ -1,0 +1,22 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "build cuda",
+      "type": "shell",
+      "command": "nvcc",
+      "args": [
+        "-g",                // enable debug info
+        "-G",                // device debug info
+        "${file}",           // current file
+        "-o",
+        "${fileDirname}/HelloWorld.exe"
+      ],
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      },
+      "problemMatcher": ["$gcc"]
+    }
+  ]
+}
