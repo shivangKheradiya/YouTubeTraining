@@ -1,0 +1,15 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Debug CUDA Program",
+      "type": "cppvsdbg",          // MSVC debugger
+      "request": "launch",
+      "program": "${fileDirname}/HelloWorld.exe",
+      "args": [],
+      "cwd": "${fileDirname}",
+      "console": "integratedTerminal",
+      "preLaunchTask": "build cuda"
+    }
+  ]
+}
