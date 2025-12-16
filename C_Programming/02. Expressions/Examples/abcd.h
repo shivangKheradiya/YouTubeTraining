@@ -1,0 +1,1 @@
+int count=100;              /* count is global */
