@@ -12,7 +12,6 @@ gcc -O3 main.c -o app   # maximum optimization
 void* worker(void* arg) {
     sleep(2);
     flag = 1;           // updated by another thread
-    printf("Flag set to 1 in worker\n");
     return NULL;
 }
 

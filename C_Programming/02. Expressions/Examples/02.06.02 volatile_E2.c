@@ -1,29 +1,18 @@
 #include <stdio.h>
-#include <pthread.h>
-#include <unistd.h>
-
-static int flagValue = 0;
-const volatile int *flag = &flagValue;
-
-void* worker(void* arg) {
-    sleep(2);
-    flagValue = 1;
-    printf("Flag set to 1 in worker\n");
-    return NULL;
-}
+#include <windows.h>
 
 int main() {
-    pthread_t t;
-    pthread_create(&t, NULL, worker, NULL);
+    SYSTEMTIME st;
 
-    printf("Waiting for flag...\n");
+    while (1) {
+        GetLocalTime(&st);
 
-    // Without voletile, -O2 or -O3 may become infine loop.
-    while (flag == 0) {
-        // Compiler may optimize this into: while(1) {}
-        // Because it thinks 'flag' never changes in this thread 
+        printf("Date: %02d-%02d-%04d  Time: %02d:%02d:%02d\n",
+               st.wDay, st.wMonth, st.wYear,
+               st.wHour, st.wMinute, st.wSecond);
+
+        Sleep(1000);  // 1 second
     }
 
-    printf("Flag updated!\n");
     return 0;
 }
